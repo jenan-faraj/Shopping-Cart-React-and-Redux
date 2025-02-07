@@ -1,14 +1,21 @@
-import "./App.css";
-import Navbar from './Navbar'
-import Footer from './Footer'
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store";
+import ProductList from "./components/ProductList";
+import Cart from "../src/components/Cart";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <Footer />
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <div>
+          <h1>Shopping Cart</h1>
+          <ProductList />
+          <Cart />
+        </div>
+      </PersistGate>
+    </Provider>
   );
-}
+};
 
 export default App;
